@@ -7,7 +7,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-<table class="table table-bordered" widht="100" cellspacing="0">
+<table class="table table-bordered" id="dataTable" widht="100%" cellspacing="0">
 <thead class="thead-dark">
     <tr>
         <th>No</th>
@@ -21,8 +21,8 @@
             <td><?= $no++; ?></td>
             <td><?= $k->nama_kategori; ?></td>
             <td>
-                <a href="<?= site_url('kategori/edit/',$k->id); ?>">Edit</a>
-                <a href="<?= site_url('kategori/hapus/',$k->id); ?>"
+                <a href="<?= site_url('kategori/edit/'.$k->id); ?>">Edit</a>
+                <a href="<?= site_url('kategori/hapus/'$k->id); ?>"
                 onclick="return confirm('yakin?')">Hapus</a>
             </td>
 </tr>
