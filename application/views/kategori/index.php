@@ -22,7 +22,7 @@
             <td><?= $k->nama_kategori; ?></td>
             <td>
                 <a href="<?= site_url('kategori/edit/'.$k->id); ?>">Edit</a>
-                <a href="<?= site_url('kategori/hapus/'$k->id); ?>"
+                <a href="<?= site_url('kategori/hapus/'.$k->id); ?>"
                 onclick="return confirm('yakin?')">Hapus</a>
             </td>
 </tr>
