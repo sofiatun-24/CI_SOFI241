@@ -4,7 +4,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Perpustakaan</div>
+    <div class="sidebar-brand-text mx-3">Anggota CRUD</div>
 </a>
 <hr class="sidebar-divider my-0">
 
@@ -21,6 +21,15 @@
     <a class="nav-link" href="<?= site_url('kategori'); ?>">
         <i class="fas fa-fw fa-folder"></i>
         <span>Kategori</span>
+    </a>
+</li>
+
+<hr class="sidebar-divider my-0">
+
+<li class="nav-item">
+    <a class="nav-link" href="<?= site_url('anggota'); ?>">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Anggota</span>
     </a>
 </li>
 
