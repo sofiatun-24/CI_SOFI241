@@ -9,7 +9,7 @@
 <hr class="sidebar-divider my-0">
 
 <li class="nav-item active">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="<?= site_url('dashboard'); ?>">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span>
     </a>
