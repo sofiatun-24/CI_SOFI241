@@ -35,7 +35,7 @@
 
 <li class="nav-item">
     <a class="nav-link" href="<?= site_url('Peminjaman') ?>">
-        <i class="fas fa-book"></i>
+        <i class="fas fa-hand-holding"></i>
         <span>Peminjaman</span>
 </a>
 </li>

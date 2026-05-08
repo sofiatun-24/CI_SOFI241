@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit ('No direct script access allowed');
 
 class peminjaman extends CI_Controller{
 
@@ -9,30 +9,29 @@ class peminjaman extends CI_Controller{
         if(!$this->session->userdata('login')){
             redirect('login');
         }
-        $this->load->model('Peminjaman_model');
+        $this->load->model('peminjaman_model');
     }
-    
     public function index()
     {
-        $data['data']= $this->Peminjaman_model->get_all();
+        $data['data']= $this->peminjaman_model->get_all();
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
         $this->load->view('peminjaman/index', $data);
-        $this->load->view('templates/footer'); 
+        $this->load->view('templates/footer');
     }
 
     public function tambah()
     {
-        $data['anggota']=$this->db->get('anggota')->result();
-        $data['buku']=$this->db->get('buku')->result();
+        $data['anggota']= $this->db->get('anggota')->result();
+        $data['buku']= $this->db->get('buku')->result();
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
         $this->load->view('peminjaman/tambah', $data);
-        $this->load->view('templates/footer'); 
+        $this->load->view('templates/footer');
     }
 
     public function simpan()
@@ -47,12 +46,13 @@ class peminjaman extends CI_Controller{
         ];
         $buku_id = $this->input->post('buku_id');
 
-        $this->Peminjaman_model->insert($data, $buku_id);
+        $this->peminjaman_model->insert($data, $buku_id);
+        redirect('peminjaman');
     }
 
     public function kembali($id)
     {
-        $this->Peminjaman_model->pengembalian($id);
+        $this->peminjaman_model->pengembalian($id);
         redirect('peminjaman');
     }
 }
