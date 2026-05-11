@@ -1,39 +1,53 @@
 <?php
-defined('BASEPATH')OR exit('No direct script access allowed');
+// application/models/Buku_model.php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class buku_model extends CI_Model{
+class Buku_model extends CI_Model {
 
-    private $table = 'buku';
+    protected $table    = 'buku';
+    protected $pk       = 'kode_buku';
+    protected $kategori = 'kategori';
 
     public function get_all()
-{
-    $this->db->select('buku.*, kategori.nama_kategori');
-    $this->db->from('buku');
-    $this->db->join('kategori', 'kategori.id = buku.kategori');
-    return $this->db->get()->result();
-}
-    public function get_by_id($id)
     {
-        $this->db->where('kode_buku',$id);
-        return $this->db->get('buku')->row();
+        // JOIN ke tabel kategori agar nama_kategori tersedia di view
+        return $this->db
+                    ->select('buku.*, kategori.nama_kategori')
+                    ->from($this->table)
+                    ->join('kategori', 'kategori.id = buku.kategori', 'left')
+                    ->get()
+                    ->result();
+    }
+
+    public function get_by_id($kode_buku)
+    {
+        return $this->db
+                    ->where($this->pk, $kode_buku)
+                    ->get($this->table)
+                    ->row();
+    }
+
+    public function get_kategori()
+    {
+        return $this->db->get($this->kategori)->result();
     }
 
     public function insert($data)
     {
         return $this->db->insert($this->table, $data);
     }
-    public function delete($id)
+
+    public function update($kode_buku, $data)
     {
-        return $this->db->delete($this->table,['kode_buku'=>$id]);
+        return $this->db
+                    ->where($this->pk, $kode_buku)
+                    ->update($this->table, $data);
     }
-    public function is_used($id)
+
+    public function delete($kode_buku)
     {
-        return $this->db->where('kode_buku',$id)->count_all_results('buku')>0;
+        return $this->db
+                    ->where($this->pk, $kode_buku)
+                    ->delete($this->table);
     }
-    public function update($id,$data)
-    {
-        $this->db->where('kode_buku',$id);
-        return $this->db->update($this->table,$data);
-    }
-    
 }
