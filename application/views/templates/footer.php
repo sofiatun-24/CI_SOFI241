@@ -27,7 +27,7 @@
 <script>
     var ctx= document.getElementById("chartDashboard");
     var chart= new Chart(ctx,{
-        type:'pie',
+        type:'bar',
         data:{
             labels:['kategori', 'Anggota'],
             datasets:[{

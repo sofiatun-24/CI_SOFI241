@@ -6,10 +6,8 @@
 
             <form method="post" action="<?= site_url('peminjaman/simpan'); ?>">
 
-                <!-- ANGGOTA -->
                 <div class="form-group">
                     <label>Anggota</label>
-
                     <select name="anggota_id" class="form-control" required>
                         <option value="">-- Pilih Anggota --</option>
 
@@ -22,10 +20,8 @@
                     </select>
                 </div>
 
-                <!-- BUKU -->
                 <div class="form-group">
                     <label>Buku</label>
-
                     <select name="buku_id" class="form-control" required>
                         <option value="">-- Pilih Buku --</option>
 
@@ -38,24 +34,36 @@
                     </select>
                 </div>
 
-                <!-- TANGGAL -->
                 <div class="form-group">
                     <label>Tanggal Jatuh Tempo</label>
-
-                    <input 
-                        type="date" 
-                        name="tanggal_jatuh_tempo" 
-                        class="form-control"
-                        required>
+                    <input type="date"
+                           name="tanggal_jatuh_tempo"
+                           class="form-control"
+                           required>
                 </div>
 
-                <!-- BUTTON -->
-                <button type="submit" class="btn btn-primary">
+                <button type="submit"
+                        class="btn btn-primary"
+                        id="btnSimpan">
                     Simpan
                 </button>
+
+                <a href="<?= site_url('peminjaman'); ?>"
+                   class="btn btn-secondary">
+                    Kembali
+                </a>
 
             </form>
 
         </div>
     </div>
 </div>
+
+<script>
+document.querySelector("form").addEventListener("submit", function() {
+
+    document.getElementById("btnSimpan").disabled = true;
+
+    document.getElementById("btnSimpan").innerHTML = "Menyimpan...";
+});
+</script>

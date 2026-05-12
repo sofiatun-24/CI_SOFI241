@@ -1,37 +1,18 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Buku</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css">
 </head>
-<body id="page-top">
+<body>
+
 <div id="wrapper">
-
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('buku') ?>">
-            <div class="sidebar-brand-icon"><i class="fas fa-book"></i></div>
-            <div class="sidebar-brand-text mx-3">Perpustakaan</div>
-        </a>
-        <hr class="sidebar-divider my-0">
-        <li class="nav-item"><a class="nav-link" href="<?= base_url('buku') ?>"><i class="fas fa-fw fa-table mr-2"></i><span>Data Buku</span></a></li>
-        <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-fw fa-plus mr-2"></i><span>Tambah Buku</span></a></li>
-    </ul>
-
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
-
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><span class="nav-link text-gray-600"><i class="fas fa-user mr-1"></i> Admin</span></li>
-                </ul>
-            </nav>
 
             <div class="container-fluid">
 
@@ -65,6 +46,7 @@
 
                         <div class="row">
 
+                            <!-- Kode Buku -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kode Buku <span class="text-danger">*</span></label>
@@ -72,11 +54,11 @@
                                            name="kode_buku"
                                            class="form-control"
                                            placeholder="Contoh: 001"
-                                           value="<?= set_value('kode_buku') ?>"
-                                           required>
+                                           value="<?= set_value('kode_buku') ?>">
                                 </div>
                             </div>
 
+                            <!-- Judul Buku -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Judul Buku <span class="text-danger">*</span></label>
@@ -84,11 +66,11 @@
                                            name="judul"
                                            class="form-control"
                                            placeholder="Masukkan judul buku"
-                                           value="<?= set_value('judul') ?>"
-                                           required>
+                                           value="<?= set_value('judul') ?>">
                                 </div>
                             </div>
 
+                            <!-- Penulis -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Penulis <span class="text-danger">*</span></label>
@@ -96,11 +78,11 @@
                                            name="penulis"
                                            class="form-control"
                                            placeholder="Nama penulis"
-                                           value="<?= set_value('penulis') ?>"
-                                           required>
+                                           value="<?= set_value('penulis') ?>">
                                 </div>
                             </div>
 
+                            <!-- Penerbit -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Penerbit <span class="text-danger">*</span></label>
@@ -108,41 +90,35 @@
                                            name="penerbit"
                                            class="form-control"
                                            placeholder="Nama penerbit"
-                                           value="<?= set_value('penerbit') ?>"
-                                           required>
+                                           value="<?= set_value('penerbit') ?>">
                                 </div>
                             </div>
 
+                            <!-- FIX 1: tahun → type="date" karena kolom DB bertipe DATE -->
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Tahun Terbit <span class="text-danger">*</span></label>
-                                    <input type="number"
+                                    <input type="date"
                                            name="tahun"
                                            class="form-control"
-                                           placeholder=""
-                                           min="1900"
-                                           max="<?= date('Y') ?>"
-                                           value="<?= set_value('tahun') ?>"
-                                           required>
+                                           value="<?= set_value('tahun') ?>">
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Kategori <span class="text-danger">*</span></label>
-                                    <select name="id" class="form-control" required>
-                                        <option value="">-- Pilih Kategori --</option>
-                                        <?php foreach ($kategori as $k): ?>
-                                            <option value="<?= $k->id ?>"
-                                                <?= set_select('id', $k->id) ?>>
-                                                <?= htmlspecialchars($k->nama_kategori) ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
+                            <!-- FIX 2: name="id" → name="kategori", value pakai nama_kategori -->
+                            <div class="form-group mb-3">
+                    <label>Kategori</label>
+                    <select name="kategori" class="form-control" required>
+                        <option value="">--Pilih Kategori--</option>
+                        <?php foreach ($kategori as $k) { ?>
+                            <option value="<?= $k->id ?>">
+                                <?= $k->nama_kategori ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
 
-                        
+                            <!-- Stok -->
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Stok <span class="text-danger">*</span></label>
@@ -151,11 +127,11 @@
                                            class="form-control"
                                            placeholder="Jumlah stok"
                                            min="0"
-                                           value="<?= set_value('stok') ?>"
-                                           required>
+                                           value="<?= set_value('stok') ?>">
                                 </div>
                             </div>
 
+                            <!-- Lokasi Rak -->
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Lokasi Rak <span class="text-danger">*</span></label>
@@ -163,8 +139,7 @@
                                            name="lokasi_rak"
                                            class="form-control"
                                            placeholder="Contoh: Rak Blok-3"
-                                           value="<?= set_value('lokasi_rak') ?>"
-                                           required>
+                                           value="<?= set_value('lokasi_rak') ?>">
                                 </div>
                             </div>
 
