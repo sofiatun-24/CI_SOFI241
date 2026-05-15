@@ -49,8 +49,22 @@
 
 <li class="nav-item">
     <a class="nav-link" href="<?= site_url('laporan/peminjaman') ?>">
-        <i class="fas fa-book"></i>
+        <i class="fas fa-chart-bar"></i>
         <span>Laporan Peminjaman</span>
+</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?= site_url('laporan/anggota') ?>">
+        <i class="fas fa-chart-line"></i>
+        <span>Laporan Anggota</span>
+</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?= site_url('laporan/buku') ?>">
+        <i class="fas fa-file-pdf"></i>
+        <span>Laporan Buku</span>
 </a>
 </li>
 

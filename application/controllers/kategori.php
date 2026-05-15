@@ -13,7 +13,8 @@ class Kategori extends CI_Controller {
     }
     public function index()
     {
-        $data['kategori'] = $this->Kategori_model->get_all();
+        $data['kategori']    = $this->Kategori_model->get_all();
+        $data['total_buku']  = $this->db->count_all('buku');
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
