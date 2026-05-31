@@ -1,46 +1,50 @@
 <?php
-defined('BASEPATH') OR exit ('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class auth extends CI_Controller{
+class Auth extends CI_Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
-        $this->load->model('auth_model');
+        $this->load->model('User_model');
+        $this->load->library('session');
+        $this->load->helper('url');
     }
 
-    public function index()
-    {
+    public function index() {
+        $this->login();
+    }
+
+    public function login() {
+        // Kalau sudah login, langsung ke dashboard
+        if ($this->session->userdata('logged_in')) {
+            redirect('dashboard');
+        }
         $this->load->view('auth/login');
     }
 
-    public function login()
-    {
-        $username= $this->input->post('username');
-        $password= $this->input->post('password');
+    public function proses_login() {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
 
-        $user= $this->auth_model->cek_login($username, $password);
+        $user = $this->User_model->cek_login($username, $password);
 
-        if($user){
-            $data=[
-                'id_user'=> $user->id,
-                'username'=> $user->username,
-                'role'=> $user->role,
-                'login'=> TRUE
-            ];
-
-            $this->session->set_userdata($data);
-
-            $this->auth_model->update_last_login($user->id);
+        if ($user) {
+            $this->session->set_userdata([
+                'logged_in' => TRUE,
+                'id'        => $user->id,
+                'nama'      => $user->nama,
+                'username'  => $user->username,
+                'role'      => $user->role,
+            ]);
             redirect('dashboard');
-        }else{
-            $this->session->set_flashdata('error', 'Username dan password salah');
-            redirect('login');
+        } else {
+            $this->session->set_flashdata('error', 'Username atau password salah!');
+            redirect('auth/login');
         }
     }
-    public function logout()
-    {
+
+    public function logout() {
         $this->session->sess_destroy();
-        redirect('login');
+        redirect('auth/login');
     }
 }

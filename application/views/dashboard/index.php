@@ -1,837 +1,293 @@
-<link href="<?= base_url('assets/css/sb-admin-2.min.css');?>" rel="stylesheet">
+<?php $this->load->view('templates/header'); ?>
+<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('templates/topbar'); ?>
+
+<div class="container-fluid">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-.dashboard-wrapper *{
-    font-family:'Inter',sans-serif;
-}
-
-.dashboard-wrapper{
-    padding:22px;
-    background:#eef2f7;
-    min-height:100vh;
-}
-
-/* HERO */
-.dashboard-hero{
-    background:linear-gradient(135deg,#4f46e5,#7c3aed,#ec4899);
-    border-radius:26px;
-    padding:28px;
-    color:#fff;
-    margin-bottom:24px;
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 18px 40px rgba(79,70,229,.25);
-}
-
-.dashboard-hero::before{
-    content:"";
-    position:absolute;
-    width:260px;
-    height:260px;
-    background:rgba(255,255,255,.13);
-    border-radius:50%;
-    right:-70px;
-    top:-90px;
-}
-
-.dashboard-hero::after{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    background:rgba(255,255,255,.10);
-    border-radius:50%;
-    left:45%;
-    bottom:-110px;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-}
-
-.hero-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 14px;
-    border-radius:999px;
-    background:rgba(255,255,255,.18);
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:14px;
-}
-
-.hero-title{
-    font-size:32px;
-    font-weight:800;
-    letter-spacing:-.8px;
-    margin-bottom:8px;
-}
-
-.hero-subtitle{
-    max-width:620px;
-    font-size:14px;
-    opacity:.92;
-    line-height:1.7;
-}
-
-.hero-mini-card{
-    background:rgba(255,255,255,.18);
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:20px;
-    padding:18px;
-    backdrop-filter:blur(12px);
-    height:100%;
-    text-align:center;
-}
-
-.hero-mini-label{
-    font-size:12px;
-    opacity:.85;
-    margin-bottom:8px;
-}
-
-.hero-mini-number{
-    font-size:26px;
-    font-weight:800;
-}
-
-/* STAT CARD */
-.stat-card{
-    background:#fff;
-    border-radius:22px;
-    padding:22px;
-    border:1px solid #e2e8f0;
-    height:100%;
-    transition:.25s ease;
-    box-shadow:0 8px 22px rgba(15,23,42,.05);
-    position:relative;
-    overflow:hidden;
-}
-
-.stat-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 16px 32px rgba(15,23,42,.09);
-}
-
-.stat-card::after{
-    content:"";
-    position:absolute;
-    width:85px;
-    height:85px;
-    border-radius:50%;
-    right:-30px;
-    top:-30px;
-    opacity:.13;
-}
-
-.stat-card.purple::after{background:#6366f1;}
-.stat-card.green::after{background:#10b981;}
-.stat-card.orange::after{background:#f59e0b;}
-.stat-card.blue::after{background:#0ea5e9;}
-
-.stat-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:18px;
-}
-
-.stat-icon{
-    width:54px;
-    height:54px;
-    border-radius:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.stat-label{
-    font-size:12px;
-    font-weight:700;
-    color:#64748b;
-    text-transform:uppercase;
-    letter-spacing:.8px;
-    margin-bottom:8px;
-}
-
-.stat-number{
-    font-size:34px;
-    font-weight:800;
-    color:#0f172a;
-    line-height:1;
-}
-
-.stat-desc{
-    margin-top:10px;
-    font-size:13px;
-    color:#64748b;
-}
-
-/* PANEL */
-.panel-card{
-    background:#fff;
-    border-radius:22px;
-    border:1px solid #e2e8f0;
-    box-shadow:0 8px 22px rgba(15,23,42,.05);
-    overflow:hidden;
-    height:100%;
-}
-
-.panel-header{
-    padding:18px 22px;
-    border-bottom:1px solid #e2e8f0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.panel-title{
-    font-size:15px;
-    font-weight:800;
-    color:#0f172a;
-}
-
-.panel-subtitle{
-    font-size:12px;
-    color:#64748b;
-    margin-top:3px;
-}
-
-.panel-body{
-    padding:22px;
-}
-
-/* QUICK MENU */
-.quick-menu{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-}
-
-.quick-item{
-    padding:16px;
-    border-radius:18px;
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-    text-decoration:none !important;
-    color:#0f172a;
-    transition:.22s ease;
-    display:block;
-}
-
-.quick-item:hover{
-    text-decoration:none;
-    color:#0f172a;
-    background:#eef2ff;
-    transform:translateY(-2px);
-}
-
-.quick-icon{
-    width:42px;
-    height:42px;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:12px;
-}
-
-.quick-title{
-    font-size:13px;
-    font-weight:800;
-}
-
-.quick-desc{
-    font-size:12px;
-    color:#64748b;
-    margin-top:3px;
-}
-
-/* ACTIVITY */
-.activity-item{
-    display:flex;
-    gap:12px;
-    padding:13px 0;
-    border-bottom:1px solid #e2e8f0;
-}
-
-.activity-item:last-child{
-    border-bottom:none;
-}
-
-.activity-dot{
-    width:11px;
-    height:11px;
-    border-radius:50%;
-    margin-top:5px;
-    flex:none;
-}
-
-.activity-title{
-    font-size:13px;
-    font-weight:700;
-    color:#0f172a;
-}
-
-.activity-time{
-    font-size:12px;
-    color:#64748b;
-    margin-top:3px;
-}
-
-/* PROGRESS */
-.progress-list{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-}
-
-.progress-info{
-    display:flex;
-    justify-content:space-between;
-    font-size:13px;
-    margin-bottom:8px;
-}
-
-.progress-name{
-    font-weight:700;
-    color:#0f172a;
-}
-
-.progress-percent{
-    color:#64748b;
-    font-weight:700;
-}
-
-.progress{
-    height:9px;
-    border-radius:999px;
-    background:#e2e8f0;
-}
-
-.progress-bar{
-    border-radius:999px;
-}
-
-/* CHART */
-.chart-card{
-    background:#fff;
-    border-radius:22px;
-    border:1px solid #e2e8f0;
-    overflow:hidden;
-    box-shadow:0 8px 22px rgba(15,23,42,.05);
-}
-
-.chart-header{
-    padding:18px 22px;
-    border-bottom:1px solid #e2e8f0;
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.chart-title{
-    font-size:15px;
-    font-weight:800;
-    color:#0f172a;
-}
-
-.chart-body{
-    padding:24px;
-}
-
-canvas{
-    max-height:330px;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-
-    .dashboard-wrapper{
-        padding:15px;
+    /* === WARNA TEMA: HIJAU & PINK PASTEL === */
+    :root {
+        --green:        #3dbb85;
+        --green-dark:   #2a9e6e;
+        --green-light:  #e8f8f2;
+        --green-mid:    #c2edd9;
+        --pink:         #e97fa8;
+        --pink-dark:    #d4608e;
+        --pink-light:   #fce8f1;
+        --pink-mid:     #f5c2d8;
+        --mint:         #f0faf6;
+        --blush:        #fdf0f6;
     }
 
-    .dashboard-hero{
-        padding:22px;
+    body { background-color: #f7faf9 !important; }
+
+    .hero-card {
+        background: linear-gradient(135deg, var(--green), var(--green-dark));
+        border-radius: 18px;
+        padding: 28px 32px;
+        color: #fff;
+        margin-bottom: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-card::before {
+        content: "";
+        position: absolute;
+        width: 200px; height: 200px;
+        background: rgba(255,255,255,.08);
+        border-radius: 50%;
+        right: -50px; top: -80px;
+    }
+    .hero-card::after {
+        content: "";
+        position: absolute;
+        width: 140px; height: 140px;
+        background: rgba(255,255,255,.06);
+        border-radius: 50%;
+        right: 80px; bottom: -60px;
+    }
+    .hero-content { position: relative; z-index: 2; }
+
+    /* stat cards */
+    .stat-card {
+        border: none;
+        border-radius: 14px;
+        transition: .25s;
+        box-shadow: 0 4px 14px rgba(0,0,0,.06);
+    }
+    .stat-card:hover { transform: translateY(-3px); }
+
+    .stat-green  { border-left: 4px solid var(--green) !important; }
+    .stat-pink   { border-left: 4px solid var(--pink)  !important; }
+    .stat-gmid   { border-left: 4px solid #6ecfaa !important; }
+    .stat-pmid   { border-left: 4px solid #f0a3c4 !important; }
+
+    .ic-green { color: var(--green); }
+    .ic-pink  { color: var(--pink); }
+    .ic-gmid  { color: #6ecfaa; }
+    .ic-pmid  { color: #f0a3c4; }
+
+    .lbl-green { color: var(--green-dark) !important; }
+    .lbl-pink  { color: var(--pink-dark)  !important; }
+    .lbl-gmid  { color: #4dac87 !important; }
+    .lbl-pmid  { color: #d4608e !important; }
+
+    /* menu cards */
+    .menu-card {
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 4px 14px rgba(0,0,0,.06);
+        transition: .25s;
+        height: 100%;
+    }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+
+    .menu-icon-wrap {
+        width: 62px; height: 62px;
+        border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 14px;
+        font-size: 26px;
     }
 
-    .hero-title{
-        font-size:25px;
+    /* btn pastel */
+    .btn-green {
+        background: var(--green); color: #fff; border: none;
+        border-radius: 8px;
     }
+    .btn-green:hover { background: var(--green-dark); color: #fff; }
 
-    .quick-menu{
-        grid-template-columns:1fr;
+    .btn-pink {
+        background: var(--pink); color: #fff; border: none;
+        border-radius: 8px;
     }
+    .btn-pink:hover { background: var(--pink-dark); color: #fff; }
 
-    .stat-number{
-        font-size:28px;
+    .btn-mint {
+        background: #6ecfaa; color: #fff; border: none;
+        border-radius: 8px;
     }
+    .btn-mint:hover { background: #4dac87; color: #fff; }
 
-    .chart-body,
-    .panel-body{
-        padding:16px;
+    .btn-blush {
+        background: #f0a3c4; color: #fff; border: none;
+        border-radius: 8px;
     }
-}
+    .btn-blush:hover { background: #d4608e; color: #fff; }
 </style>
 
-<?php
-$total_kategori = isset($total_kategori) ? $total_kategori : 0;
-$total_buku     = isset($total_buku) ? $total_buku : 0;
-?>
+<!-- HERO -->
+<div class="hero-card">
+    <div class="hero-content">
+        <p class="mb-1" style="opacity:.8; font-size:13px;">
+            <i class="fas fa-circle mr-1" style="color:#a8f0d4; font-size:9px;"></i>
+            <?= date('l, d F Y') ?>
+        </p>
+        <h4 class="font-weight-bold mb-1">
+            Selamat Datang, <?= $nama ?>!
+        </h4>
+        <p class="mb-0" style="opacity:.85; font-size:13px;">
+            Anda login sebagai
+            <span style="background:rgba(255,255,255,.22); padding:2px 12px; border-radius:99px; font-weight:600;">
+                <?= ucfirst($role) ?>
+            </span>
+        </p>
+    </div>
+</div>
 
-<div class="container-fluid dashboard-wrapper">
+<!-- STAT CARDS (admin only) -->
+<?php if ($role == 'admin'): ?>
+<div class="row mb-4">
 
-    <!-- HERO -->
-    <div class="dashboard-hero">
-
-        <div class="row align-items-center">
-
-            <div class="col-lg-8 mb-4 mb-lg-0">
-
-                <div class="hero-content">
-
-                    <div class="hero-badge">
-                        <i class="fas fa-book-reader"></i>
-                        Library Dashboard
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="card stat-card stat-green py-2">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="mr-3">
+                        <i class="fas fa-file-invoice fa-2x ic-green"></i>
                     </div>
-
-                    <div class="hero-title">
-                        Selamat Datang Kembali!
+                    <div>
+                        <div class="text-xs font-weight-bold lbl-green text-uppercase mb-1">Total Order</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_order ?? 0 ?></div>
                     </div>
-
-                    <div class="hero-subtitle">
-                        Pantau data kategori, koleksi buku, aktivitas sistem, dan perkembangan perpustakaan melalui tampilan dashboard yang lebih lengkap dan informatif.
-                    </div>
-
                 </div>
-
             </div>
-
-            <div class="col-lg-4">
-
-                <div class="row">
-
-                    <div class="col-6">
-
-                        <div class="hero-mini-card">
-
-                            <div class="hero-mini-label">
-                                Kategori
-                            </div>
-
-                            <div class="hero-mini-number">
-                                <?= $total_kategori; ?>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-6">
-
-                        <div class="hero-mini-card">
-
-                            <div class="hero-mini-label">
-                                Buku
-                            </div>
-
-                            <div class="hero-mini-number">
-                                <?= $total_buku; ?>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
-
     </div>
 
-    <!-- STAT -->
-    <div class="row">
-
-        <div class="col-xl-3 col-md-6 mb-4">
-
-            <div class="stat-card purple">
-
-                <div class="stat-top">
-                    <div class="stat-icon" style="background:#eef2ff;">
-                        <i class="fas fa-layer-group" style="color:#6366f1;font-size:22px;"></i>
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="card stat-card stat-pink py-2">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="mr-3">
+                        <i class="fas fa-check-circle fa-2x ic-pink"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-weight-bold lbl-pink text-uppercase mb-1">Order Selesai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $order_selesai ?? 0 ?></div>
                     </div>
                 </div>
-
-                <div class="stat-label">Total Kategori</div>
-                <div class="stat-number"><?= $total_kategori; ?></div>
-                <div class="stat-desc">Jumlah kategori yang tersedia.</div>
-
             </div>
-
         </div>
+    </div>
 
-        <div class="col-xl-3 col-md-6 mb-4">
-
-            <div class="stat-card green">
-
-                <div class="stat-top">
-                    <div class="stat-icon" style="background:#ecfdf5;">
-                        <i class="fas fa-book-open" style="color:#10b981;font-size:22px;"></i>
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="card stat-card stat-gmid py-2">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="mr-3">
+                        <i class="fas fa-box fa-2x ic-gmid"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-weight-bold lbl-gmid text-uppercase mb-1">Total Produk</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_produk ?? 0 ?></div>
                     </div>
                 </div>
-
-                <div class="stat-label">Total Buku</div>
-                <div class="stat-number"><?= $total_buku; ?></div>
-                <div class="stat-desc">Semua koleksi buku tercatat.</div>
-
             </div>
-
         </div>
+    </div>
 
-        <div class="col-xl-3 col-md-6 mb-4">
-
-            <div class="stat-card orange">
-
-                <div class="stat-top">
-                    <div class="stat-icon" style="background:#fff7ed;">
-                        <i class="fas fa-chart-line" style="color:#f59e0b;font-size:22px;"></i>
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="card stat-card stat-pmid py-2">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="mr-3">
+                        <i class="fas fa-users fa-2x ic-pmid"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-weight-bold lbl-pmid text-uppercase mb-1">Total Pelanggan</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_pelanggan ?? 0 ?></div>
                     </div>
                 </div>
-
-                <div class="stat-label">Status Sistem</div>
-                <div class="stat-number">Aktif</div>
-                <div class="stat-desc">Dashboard berjalan normal.</div>
-
             </div>
-
         </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-
-            <div class="stat-card blue">
-
-                <div class="stat-top">
-                    <div class="stat-icon" style="background:#e0f2fe;">
-                        <i class="fas fa-database" style="color:#0ea5e9;font-size:22px;"></i>
-                    </div>
-                </div>
-
-                <div class="stat-label">Data Master</div>
-                <div class="stat-number"><?= $total_kategori + $total_buku; ?></div>
-                <div class="stat-desc">Gabungan kategori dan buku.</div>
-
-            </div>
-
-        </div>
-
     </div>
 
 </div>
+<?php endif; ?>
 
-<!-- CONTENT ROW -->
+<!-- MENU CARDS -->
 <div class="row">
 
-    <!-- CHART -->
-    <div class="col-xl-8 mb-4">
+    <?php if ($role == 'admin'): ?>
 
-        <div class="chart-card">
-
-            <div class="chart-header">
-
-                <div>
-                    <div class="chart-title">
-                        Statistik Visual
-                    </div>
-
-                    <div class="panel-subtitle">
-                        Perbandingan jumlah kategori dan buku
-                    </div>
-                </div>
-
-                <i class="fas fa-chart-bar text-primary"></i>
-
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card menu-card text-center p-4">
+            <div class="menu-icon-wrap" style="background:var(--green-light);">
+                <i class="fas fa-box ic-green"></i>
             </div>
-
-            <div class="chart-body">
-                <canvas id="chartDashboard"></canvas>
-            </div>
-
+            <h6 class="font-weight-bold mb-1">Produk</h6>
+            <p class="text-muted small mb-3">Kelola data produk & stok</p>
+            <a href="<?= site_url('produk') ?>" class="btn btn-green btn-sm">
+                Buka <i class="fas fa-arrow-right ml-1"></i>
+            </a>
         </div>
-
     </div>
 
-    <!-- QUICK MENU -->
-    <div class="col-xl-4 mb-4">
-
-        <div class="panel-card">
-
-            <div class="panel-header">
-
-                <div>
-                    <div class="panel-title">
-                        Menu Cepat
-                    </div>
-
-                    <div class="panel-subtitle">
-                        Shortcut fitur utama
-                    </div>
-                </div>
-
-                <i class="fas fa-bolt text-warning"></i>
-
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card menu-card text-center p-4">
+            <div class="menu-icon-wrap" style="background:var(--pink-light);">
+                <i class="fas fa-users ic-pink"></i>
             </div>
-
-            <div class="panel-body">
-
-                <div class="quick-menu">
-
-                    <a href="<?= site_url('buku/tambah'); ?>" class="quick-item">
-
-                        <div class="quick-icon" style="background:#eef2ff;">
-                            <i class="fas fa-plus text-primary"></i>
-                        </div>
-
-                        <div class="quick-title">
-                            Tambah Buku
-                        </div>
-
-                        <div class="quick-desc">
-                            Tambah koleksi baru
-                        </div>
-
-                    </a>
-
-                    <a href="<?= site_url('kategori'); ?>" class="quick-item">
-
-                        <div class="quick-icon" style="background:#ecfdf5;">
-                            <i class="fas fa-folder-open text-success"></i>
-                        </div>
-
-                        <div class="quick-title">
-                            Kategori
-                        </div>
-
-                        <div class="quick-desc">
-                            Kelola kategori buku
-                        </div>
-
-                    </a>
-
-                    <a href="<?= site_url('anggota'); ?>" class="quick-item">
-
-                        <div class="quick-icon" style="background:#fff7ed;">
-                            <i class="fas fa-users text-warning"></i>
-                        </div>
-
-                        <div class="quick-title">
-                            Anggota
-                        </div>
-
-                        <div class="quick-desc">
-                            Data anggota perpustakaan
-                        </div>
-
-                    </a>
-
-                    <a href="<?= site_url('laporan/buku'); ?>" class="quick-item">
-
-                        <div class="quick-icon" style="background:#fdf2f8;">
-                            <i class="fas fa-file-alt" style="color:#ec4899;"></i>
-                        </div>
-
-                        <div class="quick-title">
-                            Laporan
-                        </div>
-
-                        <div class="quick-desc">
-                            Cetak laporan data
-                        </div>
-
-                    </a>
-
-                </div>
-
-            </div>
-
+            <h6 class="font-weight-bold mb-1">Pelanggan</h6>
+            <p class="text-muted small mb-3">Kelola data pelanggan</p>
+            <a href="<?= site_url('pelanggan') ?>" class="btn btn-pink btn-sm">
+                Buka <i class="fas fa-arrow-right ml-1"></i>
+            </a>
         </div>
-
     </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card menu-card text-center p-4">
+            <div class="menu-icon-wrap" style="background:#e0f7ef;">
+                <i class="fas fa-user-cog ic-gmid"></i>
+            </div>
+            <h6 class="font-weight-bold mb-1">User</h6>
+            <p class="text-muted small mb-3">Manajemen akun pengguna</p>
+            <a href="<?= site_url('user') ?>" class="btn btn-mint btn-sm">
+                Buka <i class="fas fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <?php endif; ?>
+
+    <?php if (in_array($role, ['admin', 'sales'])): ?>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card menu-card text-center p-4">
+            <div class="menu-icon-wrap" style="background:#fce8f1;">
+                <i class="fas fa-file-invoice ic-pmid"></i>
+            </div>
+            <h6 class="font-weight-bold mb-1">Sales Order</h6>
+            <p class="text-muted small mb-3">Buat dan kelola pesanan</p>
+            <a href="<?= site_url('salesorder') ?>" class="btn btn-blush btn-sm">
+                Buka <i class="fas fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <?php endif; ?>
+
+    <?php if (in_array($role, ['admin', 'manager'])): ?>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card menu-card text-center p-4">
+            <div class="menu-icon-wrap" style="background:var(--green-light);">
+                <i class="fas fa-chart-bar ic-green"></i>
+            </div>
+            <h6 class="font-weight-bold mb-1">Laporan</h6>
+            <p class="text-muted small mb-3">Rekap & ekspor laporan PDF</p>
+            <a href="<?= site_url('laporan') ?>" class="btn btn-green btn-sm">
+                Buka <i class="fas fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <?php endif; ?>
 
 </div>
 
-<!-- LOWER CONTENT -->
-<div class="row">
+</div><!-- end container-fluid -->
 
-    <!-- PROGRESS -->
-    <div class="col-xl-5 mb-4">
-
-        <div class="panel-card">
-
-            <div class="panel-header">
-
-                <div>
-                    <div class="panel-title">
-                        Ringkasan Data
-                    </div>
-
-                    <div class="panel-subtitle">
-                        Statistik pengelolaan
-                    </div>
-                </div>
-
-                <i class="fas fa-tasks text-success"></i>
-
-            </div>
-
-            <div class="panel-body">
-
-                <div class="progress-list">
-
-                    <div>
-
-                        <div class="progress-info">
-                            <span class="progress-name">
-                                Kelengkapan Buku
-                            </span>
-
-                            <span class="progress-percent">
-                                85%
-                            </span>
-                        </div>
-
-                        <div class="progress">
-                            <div class="progress-bar bg-success" style="width:85%;"></div>
-                        </div>
-
-                    </div>
-
-                    <div>
-
-                        <div class="progress-info">
-                            <span class="progress-name">
-                                Pengelolaan Kategori
-                            </span>
-
-                            <span class="progress-percent">
-                                72%
-                            </span>
-                        </div>
-
-                        <div class="progress">
-                            <div class="progress-bar bg-primary" style="width:72%;"></div>
-                        </div>
-
-                    </div>
-
-                    <div>
-
-                        <div class="progress-info">
-                            <span class="progress-name">
-                                Aktivitas Sistem
-                            </span>
-
-                            <span class="progress-percent">
-                                90%
-                            </span>
-                        </div>
-
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" style="width:90%;"></div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- ACTIVITY -->
-    <div class="col-xl-7 mb-4">
-
-        <div class="panel-card">
-
-            <div class="panel-header">
-
-                <div>
-                    <div class="panel-title">
-                        Aktivitas Terbaru
-                    </div>
-
-                    <div class="panel-subtitle">
-                        Aktivitas dashboard
-                    </div>
-                </div>
-
-                <i class="fas fa-clock text-primary"></i>
-
-            </div>
-
-            <div class="panel-body">
-
-                <div class="activity-item">
-
-                    <div class="activity-dot bg-success"></div>
-
-                    <div>
-                        <div class="activity-title">
-                            Dashboard berhasil dimuat
-                        </div>
-
-                        <div class="activity-time">
-                            Baru saja
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="activity-item">
-
-                    <div class="activity-dot bg-primary"></div>
-
-                    <div>
-                        <div class="activity-title">
-                            Data kategori berhasil ditampilkan
-                        </div>
-
-                        <div class="activity-time">
-                            <?= $total_kategori; ?> kategori tersedia
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="activity-item">
-
-                    <div class="activity-dot bg-warning"></div>
-
-                    <div>
-                        <div class="activity-title">
-                            Data buku berhasil dihitung
-                        </div>
-
-                        <div class="activity-time">
-                            <?= $total_buku; ?> buku tercatat
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-</div>
+<?php $this->load->view('templates/footer'); ?>
