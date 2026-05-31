@@ -74,32 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-<<<<<<< HEAD
-    'dsn'      => '',
-    'hostname' => 'localhost',
-    'username' => 'root',
-    'password' => '',           // kosong kalau XAMPP default
-    'database' => 'db_salesorder',
-    'dbdriver' => 'mysqli',
-    'dbprefix' => '',
-    'pconnect' => FALSE,
-    'db_debug' => (ENVIRONMENT !== 'production'),
-    'cache_on'  => FALSE,
-    'cachedir'  => '',
-    'char_set'  => 'utf8',
-    'dbcollat'  => 'utf8_general_ci',
-    'swap_pre'  => '',
-    'encrypt'   => FALSE,
-    'compress'  => FALSE,
-    'stricton'  => FALSE,
-    'failover'  => array(),
-    'save_queries' => TRUE,
-=======
-	'dsn'	=> '',
+	'dsn'	   => '',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'db_ci3',
+	'database' => 'db_salesorder',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -109,10 +88,9 @@ $db['default'] = array(
 	'char_set' => 'utf8',
 	'dbcollat' => 'utf8_general_ci',
 	'swap_pre' => '',
-	'encrypt' => FALSE,
+	'encrypt'  => FALSE,
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
->>>>>>> ed92f072d1defffdf907a76ec03f2ed1671726e3
 );

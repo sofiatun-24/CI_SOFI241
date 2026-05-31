@@ -12,9 +12,7 @@ class Laporan extends CI_Controller {
         if (!$this->session->userdata('logged_in')) {
             redirect('auth/login');
         }
-        // Hanya admin dan manager
-        $role = $this->session->userdata('role');
-        if ($role === 'sales') {
+        if ($this->session->userdata('role') === 'sales') {
             redirect('salesorder');
         }
     }
@@ -34,19 +32,19 @@ class Laporan extends CI_Controller {
         $dari   = $this->input->get('dari')   ?? date('Y-m-01');
         $sampai = $this->input->get('sampai') ?? date('Y-m-d');
 
-        $data['laporan'] = $this->SalesOrder_model->get_laporan($dari, $sampai);
-        $data['dari']    = $dari;
-        $data['sampai']  = $sampai;
+        $laporan = $this->SalesOrder_model->get_laporan($dari, $sampai);
 
-        // Load view laporan sebagai HTML, lalu convert ke PDF
-        $html = $this->load->view('laporan/pdf', $data, TRUE);
+        $grand_total = 0;
+        foreach ($laporan as $l) {
+            $grand_total += $l->total_harga;
+        }
 
-        // Gunakan library DOMPDF atau TCPDF di sini
-        // Contoh pakai output HTML dulu (bisa dikembangkan)
-        $this->load->helper('file');
-        write_file(FCPATH . 'laporan_temp.html', $html);
+        $data['laporan']     = $laporan;
+        $data['dari']        = $dari;
+        $data['sampai']      = $sampai;
+        $data['grand_total'] = $grand_total;
 
-        $this->session->set_flashdata('info', 'Export PDF akan dikembangkan dengan library TCPDF.');
-        redirect('laporan');
+        // Load view cetak — otomatis window.print()
+        $this->load->view('laporan/pdf', $data);
     }
 }
