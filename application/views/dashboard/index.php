@@ -209,85 +209,107 @@
 <!-- MENU CARDS -->
 <div class="row">
 
-    <?php if ($role == 'admin'): ?>
+    <div class="col-lg-6 mb-4">
 
-    <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card menu-card text-center p-4">
-            <div class="menu-icon-wrap" style="background:var(--green-light);">
-                <i class="fas fa-box ic-green"></i>
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-header bg-white">
+                <h6 class="m-0 font-weight-bold text-success">
+                    Aktivitas Sistem
+                </h6>
             </div>
-            <h6 class="font-weight-bold mb-1">Produk</h6>
-            <p class="text-muted small mb-3">Kelola data produk & stok</p>
-            <a href="<?= site_url('produk') ?>" class="btn btn-green btn-sm">
-                Buka <i class="fas fa-arrow-right ml-1"></i>
-            </a>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <strong>Dashboard berhasil dimuat</strong>
+                    <br>
+                    <small class="text-muted">
+                        Sistem Sales Order aktif
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <strong><?= $total_produk ?? 0 ?> Produk tersedia</strong>
+                    <br>
+                    <small class="text-muted">
+                        Data produk berhasil dimuat
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <strong><?= $total_order ?? 0 ?> Order tercatat</strong>
+                    <br>
+                    <small class="text-muted">
+                        Total transaksi sales order
+                    </small>
+                </div>
+
+                <div>
+                    <strong><?= $order_selesai ?? 0 ?> Order selesai</strong>
+                    <br>
+                    <small class="text-muted">
+                        Order berhasil diproses
+                    </small>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 
-    <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card menu-card text-center p-4">
-            <div class="menu-icon-wrap" style="background:var(--pink-light);">
-                <i class="fas fa-users ic-pink"></i>
+    <div class="col-lg-6 mb-4">
+
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-header bg-white">
+                <h6 class="m-0 font-weight-bold text-success">
+                    Ringkasan Data
+                </h6>
             </div>
-            <h6 class="font-weight-bold mb-1">Pelanggan</h6>
-            <p class="text-muted small mb-3">Kelola data pelanggan</p>
-            <a href="<?= site_url('pelanggan') ?>" class="btn btn-pink btn-sm">
-                Buka <i class="fas fa-arrow-right ml-1"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card menu-card text-center p-4">
-            <div class="menu-icon-wrap" style="background:#e0f7ef;">
-                <i class="fas fa-user-cog ic-gmid"></i>
+            <div class="card-body">
+
+                <p class="mb-2">
+                    Produk
+                </p>
+
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-success"
+                         style="width:85%">
+                        85%
+                    </div>
+                </div>
+
+                <p class="mb-2">
+                    Pelanggan
+                </p>
+
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-info"
+                         style="width:70%">
+                        70%
+                    </div>
+                </div>
+
+                <p class="mb-2">
+                    Sales Order
+                </p>
+
+                <div class="progress">
+                    <div class="progress-bar bg-warning"
+                         style="width:90%">
+                        90%
+                    </div>
+                </div>
+
             </div>
-            <h6 class="font-weight-bold mb-1">User</h6>
-            <p class="text-muted small mb-3">Manajemen akun pengguna</p>
-            <a href="<?= site_url('user') ?>" class="btn btn-mint btn-sm">
-                Buka <i class="fas fa-arrow-right ml-1"></i>
-            </a>
+
         </div>
+
     </div>
-
-    <?php endif; ?>
-
-    <?php if (in_array($role, ['admin', 'sales'])): ?>
-
-    <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card menu-card text-center p-4">
-            <div class="menu-icon-wrap" style="background:#fce8f1;">
-                <i class="fas fa-file-invoice ic-pmid"></i>
-            </div>
-            <h6 class="font-weight-bold mb-1">Sales Order</h6>
-            <p class="text-muted small mb-3">Buat dan kelola pesanan</p>
-            <a href="<?= site_url('salesorder') ?>" class="btn btn-blush btn-sm">
-                Buka <i class="fas fa-arrow-right ml-1"></i>
-            </a>
-        </div>
-    </div>
-
-    <?php endif; ?>
-
-    <?php if (in_array($role, ['admin', 'manager'])): ?>
-
-    <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card menu-card text-center p-4">
-            <div class="menu-icon-wrap" style="background:var(--green-light);">
-                <i class="fas fa-chart-bar ic-green"></i>
-            </div>
-            <h6 class="font-weight-bold mb-1">Laporan</h6>
-            <p class="text-muted small mb-3">Rekap & ekspor laporan PDF</p>
-            <a href="<?= site_url('laporan') ?>" class="btn btn-green btn-sm">
-                Buka <i class="fas fa-arrow-right ml-1"></i>
-            </a>
-        </div>
-    </div>
-
-    <?php endif; ?>
 
 </div>
-
-</div><!-- end container-fluid -->
 
 <?php $this->load->view('templates/footer'); ?>
