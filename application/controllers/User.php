@@ -3,30 +3,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Controller {
 
-    public function __construct()
-    {
-        parent::__construct();
+public function __construct()
+{
+    parent::__construct();
 
-        if(!$this->session->userdata('login')){
-            redirect('auth');
-        }
-
-        if($this->session->userdata('role') != 'admin'){
-            redirect('dashboard');
-        }
-
-        $this->load->model('User_model');
+    if(!$this->session->userdata('logged_in')){
+        redirect('auth');
     }
 
+    if(strtolower($this->session->userdata('role')) != 'admin'){
+        redirect('dashboard');
+    }
+
+    $this->load->model('User_model');
+}   
     public function index()
-    {
-        $data['title'] = 'Data User';
-        $data['users'] = $this->User_model->get_all();
+{
+    $data['title'] = 'Data User';
+    $data['users'] = $this->User_model->get_all();
 
-        $this->load->view('templates/header',$data);
-        $this->load->view('user/index',$data);
-        $this->load->view('templates/footer');
-    }
+    $this->load->view('user/index',$data);
+}
 
     public function tambah()
     {

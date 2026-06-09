@@ -1,4 +1,6 @@
 <?php $this->load->view('templates/header'); ?>
+<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('templates/topbar'); ?>
 
 <style>
 :root{
