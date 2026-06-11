@@ -220,7 +220,6 @@
                     <tr>
                         <th>No. Order</th>
                         <th>Tanggal</th>
-                        <th>Sales</th>
                         <th>Pelanggan</th>
                         <th>Total</th>
                         <th class="text-center">Status</th>
@@ -242,17 +241,13 @@
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <div style="width:30px;height:30px;border-radius:50%;background:var(--green-light);
+                            <div style="width:30px;height:30px;border-radius:50%;background:var(--pink-light);
                                         display:flex;align-items:center;justify-content:center;
-                                        font-weight:700;font-size:12px;color:var(--green-dark);margin-right:8px;">
-                                <?= strtoupper(substr($o->nama_sales, 0, 1)) ?>
+                                        font-weight:700;font-size:12px;color:var(--pink-dark);margin-right:8px;">
+                                <?= strtoupper(substr($o->nama_pelanggan, 0, 1)) ?>
                             </div>
-                            <span style="font-size:13px;font-weight:500;"><?= $o->nama_sales ?></span>
+                            <span style="font-size:13px;font-weight:500;"><?= $o->nama_pelanggan ?></span>
                         </div>
-                    </td>
-                    <td style="font-size:13px;">
-                        <i class="fas fa-building mr-1" style="color:var(--pink);"></i>
-                        <?= $o->nama_pelanggan ?>
                     </td>
                     <td>
                         <span class="font-weight-bold" style="color:#2d3748;">
