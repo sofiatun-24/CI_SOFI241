@@ -53,7 +53,7 @@
     <?php endif; ?>
 
     <!-- ADMIN & SALES: Transaksi -->
-    <?php if (in_array($this->session->userdata('role'), ['admin', 'pelanggan'])): ?>
+    <?php if (in_array($this->session->userdata('role'), ['admin', 'sales'])): ?>
 
         <hr class="sidebar-divider">
         <div class="sidebar-heading">Transaksi</div>
