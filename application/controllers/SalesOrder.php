@@ -90,9 +90,9 @@ class SalesOrder extends CI_Controller {
     }
 
     public function update_status($id) {
-        $status = $this->input->post('status');
-        $this->SalesOrder_model->update_status($id, $status);
-        $this->session->set_flashdata('success', 'Status order berhasil diubah!');
-        redirect('salesorder/detail/' . $id);
+    $status = $this->input->post('status');
+    $this->SalesOrder_model->update_status($id, $status);
+    $this->session->set_flashdata('success', 'Status order <strong>' . strtoupper($status) . '</strong> berhasil diupdate!');
+    redirect('salesorder'); // ← langsung ke daftar
     }
 }

@@ -43,12 +43,7 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="<?= site_url('user') ?>">
-                <i class="fas fa-fw fa-user-cog"></i>
-                <span>User</span>
-            </a>
-        </li>
+
 
     <?php endif; ?>
 

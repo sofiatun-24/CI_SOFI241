@@ -17,79 +17,59 @@
 
     .page-hero {
         background: linear-gradient(135deg, var(--green), var(--green-dark));
-        border-radius: 16px;
-        padding: 22px 28px;
-        color: #fff;
-        margin-bottom: 24px;
-        position: relative;
-        overflow: hidden;
+        border-radius: 16px; padding: 22px 28px; color: #fff;
+        margin-bottom: 24px; position: relative; overflow: hidden;
     }
     .page-hero::before {
-        content:""; position:absolute;
-        width:160px; height:160px;
-        background:rgba(255,255,255,.08);
-        border-radius:50%; right:-40px; top:-60px;
+        content:""; position:absolute; width:160px; height:160px;
+        background:rgba(255,255,255,.08); border-radius:50%; right:-40px; top:-60px;
     }
     .page-hero-content { position:relative; z-index:2; }
+    .card-modern { border:none; border-radius:16px; box-shadow:0 4px 14px rgba(0,0,0,.06); }
+    .stat-card { border:none; border-radius:14px; box-shadow:0 4px 12px rgba(0,0,0,.06); transition:.2s; }
+    .stat-card:hover { transform:translateY(-3px); }
 
-    .card-modern {
-        border: none;
-        border-radius: 16px;
-        box-shadow: 0 4px 14px rgba(0,0,0,.06);
-    }
-    .stat-card {
-        border: none;
-        border-radius: 14px;
-        box-shadow: 0 4px 12px rgba(0,0,0,.06);
-        transition: .2s;
-    }
-    .stat-card:hover { transform: translateY(-3px); }
-
-    .table thead tr {
-        background: linear-gradient(135deg, var(--green), var(--green-dark));
-        color: #fff;
-    }
-    .table thead th {
-        border: none !important;
-        padding: 13px 16px;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: .05em;
-        font-weight: 600;
-    }
-    .table tbody td {
-        padding: 13px 16px;
-        vertical-align: middle;
-        border-color: #f0f0f0;
-    }
-    .table tbody tr:hover { background: #f4fdf9; }
+    .table thead tr { background:linear-gradient(135deg,var(--green),var(--green-dark)); color:#fff; }
+    .table thead th { border:none !important; padding:13px 16px; font-size:12px; text-transform:uppercase; letter-spacing:.05em; font-weight:600; }
+    .table tbody td { padding:12px 16px; vertical-align:middle; border-color:#f0f0f0; }
+    .table tbody tr:hover { background:#f4fdf9; }
 
     .avatar-pelanggan {
-        width: 38px; height: 38px;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 700; font-size: 14px;
-        color: #fff; flex-shrink: 0;
+        width:38px; height:38px; border-radius:50%;
+        display:flex; align-items:center; justify-content:center;
+        font-weight:700; font-size:14px; color:#fff; flex-shrink:0;
     }
-    .btn-edit {
-        background: #fff3f8; color: var(--pink-dark);
-        border: 1px solid var(--pink-light); border-radius: 8px;
-        font-size: 12px; padding: 5px 12px;
+    .username-chip {
+        background:#f0fdf9; border:1px solid #c2edd9;
+        border-radius:8px; padding:3px 10px;
+        font-size:11px; font-weight:600; color:var(--green-dark);
+        display:inline-flex; align-items:center; gap:4px;
     }
-    .btn-edit:hover { background: var(--pink-light); color: var(--pink-dark); }
-    .btn-hapus {
-        background: #fff0f0; color: #e05252;
-        border: 1px solid #fdd; border-radius: 8px;
-        font-size: 12px; padding: 5px 12px;
+    .pw-chip {
+        background:var(--pink-light); border:1px solid var(--pink-light);
+        border-radius:8px; padding:3px 10px;
+        font-size:11px; font-weight:600; color:var(--pink-dark);
+        display:inline-flex; align-items:center; gap:4px;
     }
-    .btn-hapus:hover { background: #ffe0e0; color: #c0392b; }
-    .btn-green {
-        background: var(--green); color: #fff;
-        border: none; border-radius: 8px;
-    }
-    .btn-green:hover { background: var(--green-dark); color: #fff; }
+    .btn-edit { background:#fff3f8; color:var(--pink-dark); border:1px solid var(--pink-light); border-radius:8px; font-size:12px; padding:5px 12px; }
+    .btn-edit:hover { background:var(--pink-light); color:var(--pink-dark); }
+    .btn-hapus { background:#fff0f0; color:#e05252; border:1px solid #fdd; border-radius:8px; font-size:12px; padding:5px 12px; }
+    .btn-hapus:hover { background:#ffe0e0; color:#c0392b; }
+    .btn-green { background:var(--green); color:#fff; border:none; border-radius:8px; }
+    .btn-green:hover { background:var(--green-dark); color:#fff; }
 
-    .alert { border: none; border-radius: 12px; }
+    /* info box */
+    .info-box {
+        background: linear-gradient(135deg, #fce8f1, #fff3f8);
+        border: 1.5px solid var(--pink-light);
+        border-radius: 14px;
+        padding: 14px 18px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        color: #4a5568;
+    }
+    .alert { border:none; border-radius:12px; }
+    .alert-success { background:#e8f8f2; color:#2a9e6e; border-left:4px solid var(--green); }
 </style>
 
 <!-- ALERT -->
@@ -109,7 +89,7 @@
                 <i class="fas fa-users mr-2"></i> Data Pelanggan
             </h5>
             <p class="mb-0" style="opacity:.85; font-size:13px;">
-                Kelola seluruh data pelanggan PT Maju Jaya
+                Setiap pelanggan baru otomatis dibuatkan akun Sales
             </p>
         </div>
         <a href="<?= site_url('pelanggan/tambah') ?>"
@@ -120,24 +100,39 @@
     </div>
 </div>
 
-<!-- STAT CARD -->
+
+
+<!-- STAT -->
 <div class="row mb-4">
     <div class="col-md-4 mb-3">
-        <div class="card stat-card" style="border-left: 4px solid var(--green);">
+        <div class="card stat-card" style="border-left:4px solid var(--green);">
             <div class="card-body py-3">
                 <div class="d-flex align-items-center">
-                    <div class="mr-3">
-                        <div style="width:44px;height:44px;border-radius:12px;background:var(--green-light);
-                                    display:flex;align-items:center;justify-content:center;">
-                            <i class="fas fa-users" style="color:var(--green);font-size:18px;"></i>
-                        </div>
+                    <div style="width:44px;height:44px;border-radius:12px;background:var(--green-light);
+                                display:flex;align-items:center;justify-content:center;margin-right:12px;">
+                        <i class="fas fa-users" style="color:var(--green);font-size:18px;"></i>
                     </div>
                     <div>
-                        <div style="font-size:11px;font-weight:700;color:var(--green-dark);
-                                    text-transform:uppercase;letter-spacing:.05em;">
-                            Total Pelanggan
-                        </div>
+                        <div style="font-size:11px;font-weight:700;color:var(--green-dark);text-transform:uppercase;">Total Pelanggan</div>
                         <div class="h4 mb-0 font-weight-bold"><?= count($pelanggan) ?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card stat-card" style="border-left:4px solid var(--pink);">
+            <div class="card-body py-3">
+                <div class="d-flex align-items-center">
+                    <div style="width:44px;height:44px;border-radius:12px;background:var(--pink-light);
+                                display:flex;align-items:center;justify-content:center;margin-right:12px;">
+                        <i class="fas fa-user-tag" style="color:var(--pink);font-size:18px;"></i>
+                    </div>
+                    <div>
+                        <div style="font-size:11px;font-weight:700;color:var(--pink-dark);text-transform:uppercase;">Akun Sales Aktif</div>
+                        <div class="h4 mb-0 font-weight-bold">
+                            <?= count(array_filter((array)$pelanggan, function($p){ return !empty($p->username); })) ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,7 +144,7 @@
 <div class="card card-modern">
     <div class="card-header bg-white border-0 py-3 px-4 d-flex justify-content-between align-items-center">
         <h6 class="mb-0 font-weight-bold" style="color:#2d3748;">
-            <i class="fas fa-list mr-2" style="color:var(--green);"></i> Daftar Pelanggan
+            <i class="fas fa-list mr-2" style="color:var(--green);"></i> Daftar Pelanggan & Akun Sales
         </h6>
         <span style="background:var(--green-light);color:var(--green-dark);border-radius:99px;
                      padding:5px 12px;font-size:12px;font-weight:600;">
@@ -161,19 +156,21 @@
             <table class="table table-hover mb-0" id="dataTable">
                 <thead>
                     <tr>
-                        <th width="50">No</th>
+                        <th width="40">No</th>
                         <th>Nama Pelanggan</th>
                         <th>Alamat</th>
                         <th>No. Telepon</th>
+                        <th>Akun Sales</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                $avatar_colors = ['#3dbb85','#e97fa8','#6ecfaa','#f0a3c4','#2a9e6e','#d4608e'];
+                $colors = ['#3dbb85','#e97fa8','#6ecfaa','#f0a3c4','#2a9e6e','#d4608e'];
                 $no = 1;
                 foreach ($pelanggan as $i => $p):
-                    $warna = $avatar_colors[$i % count($avatar_colors)];
+                    $warna = $colors[$i % count($colors)];
+                    $username = strtolower(str_replace(' ', '_', $p->nama));
                 ?>
                 <tr>
                     <td class="text-muted small"><?= $no++ ?></td>
@@ -193,13 +190,32 @@
                         <i class="fas fa-phone-alt mr-1" style="color:var(--green);"></i>
                         <?= $p->no_telepon ?>
                     </td>
+                    <td>
+                        <?php if (!empty($p->username)): ?>
+                        <div>
+                            <span class="username-chip">
+                                <i class="fas fa-user" style="font-size:10px;"></i>
+                                <?= $p->username ?>
+                            </span>
+                            <span class="pw-chip ml-1">
+                                <i class="fas fa-key" style="font-size:10px;"></i>
+                                sales123
+                            </span>
+                        </div>
+                        <?php else: ?>
+                        <span class="text-muted small">
+                            <i class="fas fa-exclamation-circle mr-1" style="color:#f0a3c4;"></i>
+                            Belum ada akun
+                        </span>
+                        <?php endif; ?>
+                    </td>
                     <td class="text-center">
                         <a href="<?= site_url('pelanggan/edit/'.$p->id) ?>" class="btn btn-edit btn-sm mr-1">
                             <i class="fas fa-edit mr-1"></i> Edit
                         </a>
                         <a href="<?= site_url('pelanggan/hapus/'.$p->id) ?>"
                            class="btn btn-hapus btn-sm"
-                           onclick="return confirm('Yakin ingin menghapus pelanggan ini?')">
+                           onclick="return confirm('Hapus pelanggan ini? Akun sales terkait juga akan dihapus!')">
                             <i class="fas fa-trash mr-1"></i> Hapus
                         </a>
                     </td>
